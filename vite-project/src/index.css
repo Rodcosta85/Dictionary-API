@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --off-white: #E9E9E9;
+  --medium-gray: #757575;
+  --dark-gray: #3A3A3A;
+  --different-gray: #2D2D2D;
+  --very-dark-gray: #1F1F1F;
+  --almost-black: #050505;
+  --lighter-purple: #A445ED;
+  --strong-purple: #8F19E8; 
+  --mistake-red: #FF5252;
+
+  --font-inter: "Inter", serif;
+  --font-mono: "Space Mono", serif;
+
+  --breakpoint-*: initial;
+  --breakpoint-mobile: 200px;
+  --breakpoint-tablet: 450px;
+  --breakpoint-desktop: 900px;
+}
+
+@layer components {
+  .input-ball::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    /* Add transition */
+    background-color: white;
+  }
+
+  .input-ball::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    /* Add transition */
+    background-color: white;
+  }
+
+  select::after {
+    background-color: var(--lighter-purple);
+  }
+
+  li::marker {
+    color: var(--strong-purple);
+  }
+
+}
