@@ -4,8 +4,8 @@ import Search from '/icon-search.svg';
 
 interface currentTheme {
   input: string,
-    placeholder: string,
-    text: string,
+  placeholder: string,
+  text: string,
 }
 
 interface inputBarProps {
@@ -78,7 +78,7 @@ const index: React.FC<inputBarProps> = ({ handleInput, handleEnterClick, input, 
           <img
             src={Search}
             alt="a small, purple magnfying glass symbol"
-            className="w-[15.55px] h-[15.55px] desktop:w-5 desktop:h-5" 
+            className="w-[15.55px] h-[15.55px] desktop:w-5 desktop:h-5"
           />
         </button>
       </div>

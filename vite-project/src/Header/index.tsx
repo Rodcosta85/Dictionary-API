@@ -57,7 +57,7 @@ const index: React.FC<headerProps> = ({ slider, handleSlider, currentTheme }) =>
               className={dropdown ? 'transition duration-300 ease-in-out' : 'rotate-180 transition duration-300 ease-in-out'}
             />
           </button>
-          <div className={dropdown ? 'hidden' : `${currentTheme.input} w-[135px] min-h p-2 rounded-[10px] flex flex-row justify-center gap-3 absolute top-[8.5%] desktop:top-[10.5%] mobile:right-[30%] tablet:right-[25%] desktop:right-[18%]`}>
+          <div className={dropdown ? 'hidden' : `${currentTheme.input} w-[135px] min-h p-2 rounded-[10px] flex flex-row justify-center items-start gap-3 absolute top-[66px] right-[35%] desktop:top-[80px] tablet:right-[22%] desktop:right-[25%]`}>
           {fontFamily !== "Serif" && (
               <button 
                 onClick={() => { handleFontChange("Serif"); openDiv(); }}

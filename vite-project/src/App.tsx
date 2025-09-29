@@ -79,6 +79,8 @@ function App() {
     if (data && data[0]?.phonetics[0]?.audio) {
       console.log("Audio URL:", data[0]?.phonetics[0]?.audio || data[0]?.phonetics[1]?.audio); // Log the URL
       audioRef.current = new Audio(data[0]?.phonetics[0]?.audio || data[0]?.phonetics[1]?.audio);
+    } else {
+
     }
   }, [data]);
 
@@ -107,7 +109,7 @@ function App() {
   const getDictionary = async () => {
     try {
       const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
-      console.log(response.data);
+      console.log(response.data[0]);
       setData(response.data[0]);
       setIsError404(false);
     } catch (error) {
@@ -129,7 +131,6 @@ function App() {
           currentTheme={currentTheme}
         />
 
-
         <InputBar
           handleInput={handleInput}
           handleEnterClick={handleEnterClick}
@@ -139,8 +140,6 @@ function App() {
           getDictionary={getDictionary}
           isActive={isPlaying} // Add the isActive property
         />
-
-
 
         {data === '' && !isError404 ? (
           <p className={`${currentTheme.text} text-center desktop:text-[25px] tablet:text-[25px] mobile:text-[15px]`}>Enter a word above to get its definition 📜</p>
