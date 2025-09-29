@@ -23,6 +23,7 @@ function App() {
   const [input, setInput] = useState<string>('');
   const [isError404, setIsError404] = useState<boolean>(false);
   const [data, setData] = useState<any>('');
+  const [audio, setAudio] = useState<string>('');
   // Initializing the state variable with "0" caused it to be rendered in the UI before the API data arrived, 
   // leading to the unexpected "0" appearing on the page. 
   // By changing the initial state to an empty string ("") or null, you've prevented this initial "0" from being displayed. 
@@ -74,6 +75,7 @@ function App() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null); // Reference to audio object
 
+<<<<<<< HEAD
 
   useEffect(() => {
     if (data && data[0]?.phonetics[0]?.audio) {
@@ -84,13 +86,15 @@ function App() {
     }
   }, [data]);
 
+=======
+>>>>>>> 42b20be3dc9eef23a7012e6ac6419e235d3fbe56
   const handlePlay = () => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play();
-        console.log('the audio has been played');
-      }
-      setIsPlaying(!isPlaying);
+      // if (isPlaying) {
+      audioRef.current.play();
+      //   console.log('the audio has been played');
+      // }
+      // setIsPlaying(!isPlaying);
     } else {
       console.error("Audio file is not available.");
     }
@@ -109,7 +113,11 @@ function App() {
   const getDictionary = async () => {
     try {
       const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
+<<<<<<< HEAD
       console.log(response.data[0]);
+=======
+      setAudio(response.data[0].phonetics[0].audio);
+>>>>>>> 42b20be3dc9eef23a7012e6ac6419e235d3fbe56
       setData(response.data[0]);
       setIsError404(false);
     } catch (error) {
@@ -159,6 +167,8 @@ function App() {
           </div>
         ) : (
           <>
+            <audio ref={audioRef} src={audio}></audio>
+
             <PlayDiv
               currentTheme={currentTheme}
               data={data}
