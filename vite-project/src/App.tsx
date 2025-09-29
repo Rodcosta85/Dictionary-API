@@ -23,6 +23,7 @@ function App() {
   const [input, setInput] = useState<string>('');
   const [isError404, setIsError404] = useState<boolean>(false);
   const [data, setData] = useState<any>('');
+  const [audio, setAudio] = useState<string>('');
   // Initializing the state variable with "0" caused it to be rendered in the UI before the API data arrived, 
   // leading to the unexpected "0" appearing on the page. 
   // By changing the initial state to an empty string ("") or null, you've prevented this initial "0" from being displayed. 
@@ -74,21 +75,13 @@ function App() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null); // Reference to audio object
 
-
-  useEffect(() => {
-    if (data && data[0]?.phonetics[0]?.audio) {
-      console.log("Audio URL:", data[0]?.phonetics[0]?.audio || data[0]?.phonetics[1]?.audio); // Log the URL
-      audioRef.current = new Audio(data[0]?.phonetics[0]?.audio || data[0]?.phonetics[1]?.audio);
-    }
-  }, [data]);
-
   const handlePlay = () => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play();
-        console.log('the audio has been played');
-      }
-      setIsPlaying(!isPlaying);
+      // if (isPlaying) {
+      audioRef.current.play();
+      //   console.log('the audio has been played');
+      // }
+      // setIsPlaying(!isPlaying);
     } else {
       console.error("Audio file is not available.");
     }
@@ -107,7 +100,7 @@ function App() {
   const getDictionary = async () => {
     try {
       const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
-      console.log(response.data);
+      setAudio(response.data[0].phonetics[0].audio);
       setData(response.data[0]);
       setIsError404(false);
     } catch (error) {
@@ -140,8 +133,6 @@ function App() {
           isActive={isPlaying} // Add the isActive property
         />
 
-
-
         {data === '' && !isError404 ? (
           <p className={`${currentTheme.text} text-center desktop:text-[25px] tablet:text-[25px] mobile:text-[15px]`}>Enter a word above to get its definition 📜</p>
         ) : isError404 ? (
@@ -160,6 +151,8 @@ function App() {
           </div>
         ) : (
           <>
+            <audio ref={audioRef} src={audio}></audio>
+
             <PlayDiv
               currentTheme={currentTheme}
               data={data}
