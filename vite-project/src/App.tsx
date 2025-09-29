@@ -75,19 +75,6 @@ function App() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null); // Reference to audio object
 
-<<<<<<< HEAD
-
-  useEffect(() => {
-    if (data && data[0]?.phonetics[0]?.audio) {
-      console.log("Audio URL:", data[0]?.phonetics[0]?.audio || data[0]?.phonetics[1]?.audio); // Log the URL
-      audioRef.current = new Audio(data[0]?.phonetics[0]?.audio || data[0]?.phonetics[1]?.audio);
-    } else {
-
-    }
-  }, [data]);
-
-=======
->>>>>>> 42b20be3dc9eef23a7012e6ac6419e235d3fbe56
   const handlePlay = () => {
     if (audioRef.current) {
       // if (isPlaying) {
@@ -113,15 +100,9 @@ function App() {
   const getDictionary = async () => {
     try {
       const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
-<<<<<<< HEAD
-<<<<<<< HEAD
       console.log(response.data[0]);
-=======
       setAudio(response.data[0].phonetics[0].audio);
->>>>>>> 42b20be3dc9eef23a7012e6ac6419e235d3fbe56
-=======
       console.log(response.data[0]);
->>>>>>> a382891 (adicionado)
       setData(response.data[0]);
       setIsError404(false);
     } catch (error) {
